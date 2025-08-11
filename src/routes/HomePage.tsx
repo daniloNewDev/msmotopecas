@@ -1,7 +1,7 @@
 import InfoSection from "../components/InfoSection";
 const HomePage = () => {
   return (
-    <div>
+    <div className="w-[100%] h-[100%] overflow-hidden">
 
       <InfoSection />
 

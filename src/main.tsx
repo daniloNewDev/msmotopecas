@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.tsx'
 import ErrorPage from './routes/ErrorPage.tsx'
 import HomePage from './routes/HomePage.tsx'
+import SearchPlate from './routes/SearchPlate.tsx'
+import NewServiceOrder from './routes/NewServiceOrder.tsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />
+      },
+      {
+        path: "/searchplate",
+        element: <SearchPlate />
+      },
+      {
+        path: "/newserviceorder",
+        element: <NewServiceOrder />
       },
     ]
   }
