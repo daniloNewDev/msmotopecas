@@ -9,7 +9,7 @@ const Footer = () => {
       <img src={msLogo} className='w-28' />
       <div>
         <h3 className='squada-one-regular text-3xl text-white text-center'>Contatos</h3>
-        <a href="https://www.instagram.com/ms__motopecas?igsh=MW1zaXdnbGc2Ym5yag==" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/ms___motopecas?igsh=MW1zaXdnbGc2Ym5yag==" target="_blank" rel="noopener noreferrer">
           <div className='flex items-center justify-start my-2'>
             <img src={logoInsta} className='w-10' />
             <h4 className='text-white squada-one-regular text-2xl ml-4'>@msmotopecas</h4>
