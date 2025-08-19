@@ -6,7 +6,7 @@ import App from './App.tsx'
 import ErrorPage from './routes/ErrorPage.tsx'
 import HomePage from './routes/HomePage.tsx'
 import SearchPlate from './routes/SearchPlate.tsx'
-import NewServiceOrder from './routes/NewServiceOrder.tsx'
+import NewWorkOrder from './routes/NewWorkOrder.tsx'
 import SearchWorkOrder from './routes/SearchWorkOrder.tsx'
 
 const router = createBrowserRouter([
@@ -24,8 +24,8 @@ const router = createBrowserRouter([
         element: <SearchPlate />
       },
       {
-        path: "/newserviceorder",
-        element: <NewServiceOrder />
+        path: "/newworkorder",
+        element: <NewWorkOrder />
       },
       {
         path: "/searchworkorder",

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import type { IWorkOrder } from "../components/interfaces/WorkOrders";
 
-const NewServiceOrder: React.FC = () => {
+const NewWorkOrder: React.FC = () => {
 
   const [workOrder, setWorkOrder] = useState<number>(1)
   const [plate, setPlate] = useState<string>('')
@@ -23,20 +24,41 @@ const NewServiceOrder: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const existingOrders = localStorage.getItem("workOrders");
+    const ordersArray: IWorkOrder[] = existingOrders ? JSON.parse(existingOrders) : [];
+
+    if (ordersArray.length > 0) {
+      const lastOrderNumber = Math.max(...ordersArray.map(order => order.workOrder));
+      setWorkOrder(lastOrderNumber + 1);
+    } else {
+      setWorkOrder(1);
+    }
+  }, []);
+
   const addNewWorkOrder = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log({
+
+    const newWorkOrder: IWorkOrder = {
+
       workOrder,
       plate,
       clientName,
       model,
-      entryDate,
-      deliveryDate,
+      entryDate: entryDate!,
+      deliveryDate: deliveryDate!,
       description,
       budget,
       paidValue,
       mechanic
-    })
+    }
+    const existingOrders = localStorage.getItem("workOrders");
+    const ordersArray: IWorkOrder[] = existingOrders ? JSON.parse(existingOrders) : [];
+
+    ordersArray.push(newWorkOrder);
+    localStorage.setItem("workOrders", JSON.stringify(ordersArray));
+
+    console.log("Ordem de serviço salva com sucesso!");
 
   }
 
@@ -159,4 +181,4 @@ const NewServiceOrder: React.FC = () => {
   )
 }
 
-export default NewServiceOrder
+export default NewWorkOrder
