@@ -29,7 +29,7 @@ const Header = () => {
       <nav className={`w-[96%] h-[85%] mt-18 ml-[2%] text-[#d4d4d4] font-semibold absolute flex flex-col bg-red-600 rounded-md items-start justify-start ${isOpen ? 'block' : 'hidden'}`}>
         <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/searchplate" onClick={() => setIsOpen(false)}>BUSCAR PLACA</Link>
         <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/newserviceorder" onClick={() => setIsOpen(false)}>NOVA ORDEM DE SERVIÇO</Link>
-        <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/contacts">O.S. EM ABERTO</Link>
+        <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/searchworkorder" onClick={() => setIsOpen(false)}>O.S. EM ABERTO</Link>
         <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/storage">ESTOQUE</Link>
         <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/cleaner">LAVA RÁPIDO</Link>
         <Link className='w-full p-3 text-2xl rounded hover:bg-red-500 text-center' to="/account">CAIXA</Link>

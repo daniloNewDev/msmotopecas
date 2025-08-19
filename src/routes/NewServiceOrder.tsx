@@ -101,6 +101,10 @@ const NewServiceOrder: React.FC = () => {
             placeholder="Nome do mecânico"
             className="w-full border p-2 rounded" />
         </div>
+        <input
+          className="border rounded mt-8 p-2 bg-red-700 text-white col-span-2"
+          type="submit"
+          value="Salvar" />
       </form>
     </div>
   )
