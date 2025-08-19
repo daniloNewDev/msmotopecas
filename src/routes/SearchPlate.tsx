@@ -14,7 +14,7 @@ const SearchPlate: React.FC = () => {
   };
 
   return (
-    <div className="w-[80%] ml-[10%] mt-[10%] grid">
+    <div className="w-[80%] ml-[10%] mt-[10%] grid dark:bg-white">
       <form>
         <h1>Buscar Placa:</h1>
         <input

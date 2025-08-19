@@ -15,7 +15,7 @@ const NewServiceOrder: React.FC = () => {
   };
 
   return (
-    <div className="w-[96%] ml-[2%] mt-[10%] mb-[10%] flex flex-col items-center justify-center">
+    <div className="w-[96%] ml-[2%] mt-[10%] mb-[10%] flex flex-col items-center justify-center dark:bg-white">
       <div className="w-full mb-10">
         <h1>Ordem de Serviço:</h1>
         <input

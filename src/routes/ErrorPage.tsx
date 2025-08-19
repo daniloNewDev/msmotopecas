@@ -1,6 +1,6 @@
 const ErrorPage = () => {
   return (
-    <div>
+    <div className="dark:bg-white">
       <h1>Page not found</h1>
     </div>
   )
