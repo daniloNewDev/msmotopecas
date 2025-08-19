@@ -13,7 +13,7 @@ const Header = () => {
       <Link to={"/"}>
         <img src="mslogo.svg" className="ml-2 mt-2" />
       </Link>
-      <h1 className='text-white font-semibold'>MS Moto Peças</h1>
+      <h1 className='text-white font-semibold dark:text-white'>MS Moto Peças</h1>
       <div className="block sm:hidden">
         <button onClick={toggleMenu} className="text-white focus:outline-none">
           <svg className="h-8 w-12 rounded-md fill-current" viewBox="0 0 24 24">
