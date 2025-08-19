@@ -15,7 +15,7 @@ const Footer = () => {
             <h4 className='text-white squada-one-regular text-2xl ml-4'>@msmotopecas</h4>
           </div>
         </a>
-        <a href="tel:+5511981356115" target="_blank" rel="noopener noreferrer">
+        <a href="https://api.whatsapp.com/send?phone=5511981356115" target="_blank" rel="noopener noreferrer">
           <div className='flex items-center justify-start my-2'>
             <img src={whatsLogo} className='w-10' />
             <h4 className='text-white squada-one-regular text-2xl ml-4'>(11) 9 8135-6115</h4>
