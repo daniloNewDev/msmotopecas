@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { IWorkOrder } from "../components/interfaces/WorkOrders";
+import { TextInput } from "../components/interfaces/FormInputs";
 
 const SearchWorkOrder: React.FC = () => {
 
@@ -8,15 +9,6 @@ const SearchWorkOrder: React.FC = () => {
   const [results, setResults] = useState<IWorkOrder[]>([]);
 
   const [plate, setPlate] = useState('')
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toUpperCase();
-    const regex = /^[A-Z]{0,3}( - )?[0-9]?[A-Z]?[0-9]{0,2}$/;
-
-    if (regex.test(value) || value === '') {
-      setPlate(value);
-    }
-  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,21 +40,25 @@ const SearchWorkOrder: React.FC = () => {
           value={workOrderNumber}
           onChange={(e) => setWorkOrderNumber(e.target.value === '' ? '' : Number(e.target.value))} />
 
-        <h1>Buscar Placa:</h1>
-        <input
-          type="text"
-          className="w-full border p-2 rounded mb-8"
-          value={plate}
-          onChange={handleChange}
-          placeholder="ABC-1D23" />
+        <div>
+          <TextInput
+            className="w-full border p-2 rounded mb-8"
+            label="Buscar placa:"
+            value={plate.toUpperCase()}
+            onChange={(e) => setPlate(e.target.value)}
+            required={false}
+            placeholder="ABC-1D23" />
+        </div>
 
-        <h1>Buscar por nome:</h1>
-        <input
-          type="text"
-          className="w-full border p-2 rounded"
-          placeholder="Digite o nome"
-          value={clientName}
-          onChange={(e) => setClientName(e.target.value)} />
+        <div>
+          <TextInput
+            className="w-full border p-2 rounded mb-8"
+            label="Buscar por nome:"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+            required={false}
+            placeholder="Digite o nome" />
+        </div>
 
         <button
           type="submit"
@@ -71,30 +67,31 @@ const SearchWorkOrder: React.FC = () => {
           Buscar
         </button>
       </form>
-
-      {results.length > 0 ? (
-        <div className="mt-8">
-          <h2>Resultados:</h2>
-          <ul className="space-y-4">
-            {results.map((order) => (
-              <li key={order.workOrder} className="border p-4 rounded bg-gray-100">
-                <p><strong>OS:</strong> {String(order.workOrder).padStart(6, '0')}</p>
-                <p><strong>Placa:</strong> {order.plate}</p>
-                <p><strong>Cliente:</strong> {order.clientName}</p>
-                <p><strong>Modelo:</strong> {order.model}</p>
-                <p><strong>Data de entrada:</strong> {new Date(order.entryDate).toLocaleDateString()}</p>
-                <p><strong>Prazo de entrega:</strong> {new Date(order.deliveryDate).toLocaleDateString()}</p>
-                <p><strong>Descrição:</strong> {order.description}</p>
-                <p><strong>Orçamento:</strong> R$ {order.budget.toFixed(2)}</p>
-                <p><strong>Valor pago:</strong> R$ {order.paidValue.toFixed(2)}</p>
-                <p><strong>Mecânico:</strong> {order.mechanic}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p className="mt-8">Nenhum resultado encontrado.</p>
-      )}
+      <div className="mb-4">
+        {results.length > 0 ? (
+          <div className="mt-8">
+            <h2>Resultados:</h2>
+            <ul className="space-y-4">
+              {results.map((order) => (
+                <li key={order.workOrder} className="border p-4 rounded bg-gray-100">
+                  <p><strong>OS:</strong> {String(order.workOrder).padStart(6, '0')}</p>
+                  <p><strong>Placa:</strong> {order.plate}</p>
+                  <p><strong>Cliente:</strong> {order.clientName}</p>
+                  <p><strong>Modelo:</strong> {order.model}</p>
+                  <p><strong>Data de entrada:</strong> {new Date(order.entryDate).toLocaleDateString()}</p>
+                  <p><strong>Prazo de entrega:</strong> {new Date(order.deliveryDate).toLocaleDateString()}</p>
+                  <p><strong>Descrição:</strong> {order.description}</p>
+                  <p><strong>Orçamento:</strong> R$ {order.budget.toFixed(2)}</p>
+                  <p><strong>Valor pago:</strong> R$ {order.paidValue.toFixed(2)}</p>
+                  <p><strong>Mecânico:</strong> {order.mechanic}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p className="mt-8">Nenhum resultado encontrado.</p>
+        )}
+      </div>
 
     </div>
   )

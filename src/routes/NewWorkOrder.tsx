@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import type { IWorkOrder } from "../components/interfaces/WorkOrders";
+import { TextInput, NumberInput, DateInput, SelectInput } from "../components/interfaces/FormInputs";
 
 const NewWorkOrder: React.FC = () => {
 
@@ -95,65 +96,61 @@ const NewWorkOrder: React.FC = () => {
           <input
             type="number"
             className="border p-2 rounded"
-            value={String(workOrder).padStart(6, '0')}
+            value={workOrder}
             readOnly
             required
             onChange={(e) => setWorkOrder(Number(e.target.value))} />
         </div>
 
         <div className="col-span-2">
-          <h2>Nome do Cliente:</h2>
-          <input
-            type="text"
-            className="w-full border p-2 rounded"
-            placeholder="Digite o nome"
-            required
+          <TextInput
+            className="w-full border rounded p-2"
+            label="Nome do Cliente"
             value={clientName}
             onChange={(e) => setClientName(e.target.value)}
+            required
+            placeholder="Digite o nome"
           />
         </div>
 
         <div>
-          <h2>Placa:</h2>
-          <input
-            type="text"
+          <TextInput
             className="w-full border p-2 rounded"
-            required
+            label="Placa:"
             value={plate}
             onChange={handleChange}
+            required
             placeholder="ABC-1D23" />
         </div>
 
         <div>
-          <h2>Modelo:</h2>
-          <input
-            type="text"
+          <TextInput
             className="w-full border p-2 rounded"
-            placeholder="Marca/Modelo"
-            required
+            label="Modelo:"
             value={model}
-            onChange={(e) => setModel(e.target.value)} />
+            onChange={(e) => setModel(e.target.value)}
+            required
+            placeholder="Marca/Modelo" />
         </div>
 
         <div>
-          <h2>Data de entrada:</h2>
-          <input
-            type="date"
-            className="w-full border p-2 rounded"
-            placeholder="insira a data"
+          <DateInput
+            label="Data de entrada:"
+            value={entryDate}
+            className={"w-full border p-2 rounded"}
+            onChange={(date) => setEntryDate(date)}
             required
-            value={entryDate ? entryDate.toISOString().split('T')[0] : ''}
-            onChange={(e) => setEntryDate(new Date(e.target.value))} />
+          />
         </div>
 
         <div>
-          <h2>Prazo de entrega:</h2>
-          <input
-            type="date"
-            className="w-full border p-2 rounded"
+          <DateInput
+            label="Prazo de entrada:"
+            value={deliveryDate}
+            className={"w-full border p-2 rounded"}
+            onChange={(date) => setDeliveryDate(date)}
             required
-            value={deliveryDate ? deliveryDate.toISOString().split('T')[0] : ''}
-            onChange={(e) => setDeliveryDate(new Date(e.target.value))} />
+          />
         </div>
 
         <div className="col-span-2">
@@ -167,40 +164,38 @@ const NewWorkOrder: React.FC = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}></textarea>
         </div>
-        <div>
-          <h2>Orçamento:
-            <input
-              type="number"
-              placeholder="R$"
-              className="w-full border p-2 rounded"
-              required
-              value={budget}
-              onChange={(e) => setBudget(Number(e.target.value))} />
-          </h2>
-        </div>
-        <div>
-          <h2>Valor pago:
-            <input
-              type="number"
-              placeholder="R$"
-              className="w-full border p-2 rounded"
-              required
-              value={paidValue}
-              onChange={(e) => setPaidValue(Number(e.target.value))} />
-          </h2>
-        </div>
-        <div className="col-span-2">
-          <h2>Funcionário responsável:</h2>
-          <select
-            className="w-full border p-2 rounded"
-            required
-            value={mechanic}
-            onChange={(e) => setMechanic(e.target.value)}>
 
-            <option value="">Selecione o mecânico</option>
-            <option value="Misso">Misso</option>
-            <option value="MC Oreia">MC Oreia</option>
-          </select>
+        <div>
+          <NumberInput
+            label="Orçamento"
+            value={budget}
+            className={"border p-2 rounded w-full"}
+            onChange={(e) => setBudget(Number(e.target.value))}
+            required
+            placeholder="R$"
+          />
+        </div>
+
+        <div>
+          <NumberInput
+            label="Valor pago:"
+            value={paidValue}
+            className={"border p-2 rounded w-full"}
+            onChange={(e) => setPaidValue(Number(e.target.value))}
+            required
+            placeholder="R$"
+          />
+        </div>
+
+        <div className="col-span-2">
+          <SelectInput
+            label="Funcionário responsável:"
+            value={mechanic}
+            className={"col-span-2 w-full p-3"}
+            onChange={(e) => setMechanic(e.target.value)}
+            options={["Misso", "MC Favela"]}
+            required
+          />
         </div>
 
         {successMessage && (
@@ -211,7 +206,7 @@ const NewWorkOrder: React.FC = () => {
 
         <input
           className="border rounded mt-8 p-2 bg-red-700 text-white col-span-2 text-center"
-          onSubmit={addNewWorkOrder}
+          type="submit"
           value="Salvar" />
 
       </form>
