@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SearchPlate: React.FC = () => {
+const CleanAutomotive: React.FC = () => {
 
   const [plate, setPlate] = useState('')
 
@@ -39,4 +39,4 @@ const SearchPlate: React.FC = () => {
 
 }
 
-export default SearchPlate;
+export default CleanAutomotive;

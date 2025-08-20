@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.tsx'
 import ErrorPage from './routes/ErrorPage.tsx'
 import HomePage from './routes/HomePage.tsx'
-import SearchPlate from './routes/SearchPlate.tsx'
+import CleanAutomotive from './routes/CleanAutomotive.tsx'
 import NewWorkOrder from './routes/NewWorkOrder.tsx'
 import SearchWorkOrder from './routes/SearchWorkOrder.tsx'
 
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: "/searchplate",
-        element: <SearchPlate />
+        path: "/cleanautomotive",
+        element: <CleanAutomotive />
       },
       {
         path: "/newworkorder",

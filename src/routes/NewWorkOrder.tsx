@@ -36,6 +36,20 @@ const NewWorkOrder: React.FC = () => {
     }
   }, []);
 
+  const resetForm = () => {
+    setPlate('');
+    setClientName('');
+    setModel('');
+    setEntryDate(null);
+    setDeliveryDate(null);
+    setDescription('');
+    setBudget(0);
+    setPaidValue(0);
+    setMechanic('');
+  };
+
+  const [successMessage, setSuccessMessage] = useState<string>('')
+
   const addNewWorkOrder = (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -58,7 +72,13 @@ const NewWorkOrder: React.FC = () => {
     ordersArray.push(newWorkOrder);
     localStorage.setItem("workOrders", JSON.stringify(ordersArray));
 
-    console.log("Ordem de serviço salva com sucesso!");
+    setSuccessMessage('Ordem de Serviço salva com sucesso!')
+    resetForm()
+
+    setTimeout(() => {
+      setSuccessMessage('');
+      window.location.reload();
+    }, 10000);
 
   }
 
@@ -77,6 +97,7 @@ const NewWorkOrder: React.FC = () => {
             className="border p-2 rounded"
             value={String(workOrder).padStart(6, '0')}
             readOnly
+            required
             onChange={(e) => setWorkOrder(Number(e.target.value))} />
         </div>
 
@@ -86,6 +107,7 @@ const NewWorkOrder: React.FC = () => {
             type="text"
             className="w-full border p-2 rounded"
             placeholder="Digite o nome"
+            required
             value={clientName}
             onChange={(e) => setClientName(e.target.value)}
           />
@@ -96,6 +118,7 @@ const NewWorkOrder: React.FC = () => {
           <input
             type="text"
             className="w-full border p-2 rounded"
+            required
             value={plate}
             onChange={handleChange}
             placeholder="ABC-1D23" />
@@ -107,6 +130,7 @@ const NewWorkOrder: React.FC = () => {
             type="text"
             className="w-full border p-2 rounded"
             placeholder="Marca/Modelo"
+            required
             value={model}
             onChange={(e) => setModel(e.target.value)} />
         </div>
@@ -117,6 +141,7 @@ const NewWorkOrder: React.FC = () => {
             type="date"
             className="w-full border p-2 rounded"
             placeholder="insira a data"
+            required
             value={entryDate ? entryDate.toISOString().split('T')[0] : ''}
             onChange={(e) => setEntryDate(new Date(e.target.value))} />
         </div>
@@ -126,6 +151,7 @@ const NewWorkOrder: React.FC = () => {
           <input
             type="date"
             className="w-full border p-2 rounded"
+            required
             value={deliveryDate ? deliveryDate.toISOString().split('T')[0] : ''}
             onChange={(e) => setDeliveryDate(new Date(e.target.value))} />
         </div>
@@ -137,6 +163,7 @@ const NewWorkOrder: React.FC = () => {
             id=""
             className="border p-2 rounded w-full"
             placeholder="Digite o tipo de manutenção"
+            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}></textarea>
         </div>
@@ -146,6 +173,7 @@ const NewWorkOrder: React.FC = () => {
               type="number"
               placeholder="R$"
               className="w-full border p-2 rounded"
+              required
               value={budget}
               onChange={(e) => setBudget(Number(e.target.value))} />
           </h2>
@@ -156,6 +184,7 @@ const NewWorkOrder: React.FC = () => {
               type="number"
               placeholder="R$"
               className="w-full border p-2 rounded"
+              required
               value={paidValue}
               onChange={(e) => setPaidValue(Number(e.target.value))} />
           </h2>
@@ -164,6 +193,7 @@ const NewWorkOrder: React.FC = () => {
           <h2>Funcionário responsável:</h2>
           <select
             className="w-full border p-2 rounded"
+            required
             value={mechanic}
             onChange={(e) => setMechanic(e.target.value)}>
 
@@ -172,10 +202,18 @@ const NewWorkOrder: React.FC = () => {
             <option value="MC Oreia">MC Oreia</option>
           </select>
         </div>
+
+        {successMessage && (
+          <div className="mb-4 p-3 text-4xl text-center col-span-2 bg-green-100 text-green-800 rounded">
+            {successMessage}
+          </div>
+        )}
+
         <input
           className="border rounded mt-8 p-2 bg-red-700 text-white col-span-2 text-center"
           type="submit"
           value="Salvar" />
+
       </form>
     </div>
   )
