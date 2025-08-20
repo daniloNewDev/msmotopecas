@@ -211,7 +211,7 @@ const NewWorkOrder: React.FC = () => {
 
         <input
           className="border rounded mt-8 p-2 bg-red-700 text-white col-span-2 text-center"
-          type="submit"
+          onSubmit={addNewWorkOrder}
           value="Salvar" />
 
       </form>
