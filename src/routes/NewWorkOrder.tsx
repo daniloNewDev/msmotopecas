@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import type { IWorkOrder } from "../components/interfaces/WorkOrders";
 
 const NewWorkOrder: React.FC = () => {
@@ -36,8 +35,6 @@ const NewWorkOrder: React.FC = () => {
       setWorkOrder(1);
     }
   }, []);
-
-  const navigate = useNavigate();
 
   const resetForm = () => {
     setPlate('');
@@ -80,8 +77,8 @@ const NewWorkOrder: React.FC = () => {
 
     setTimeout(() => {
       setSuccessMessage('');
-      navigate('/newworkorder');;
-    }, 10000);
+      window.location.reload();
+    }, 7000);
 
   }
 

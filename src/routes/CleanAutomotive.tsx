@@ -16,7 +16,7 @@ const CleanAutomotive: React.FC = () => {
   return (
     <div className="w-[80%] ml-[10%] mt-[10%] grid dark:bg-white">
       <form>
-        <h1>Buscar Placa:</h1>
+        <h1>Placa:</h1>
         <input
           type="text"
           className="w-full border p-2 rounded mb-8"
@@ -24,15 +24,22 @@ const CleanAutomotive: React.FC = () => {
           onChange={handleChange}
           placeholder="ABC-1D23" />
 
-        <h1>Buscar por nome:</h1>
+        <h1>Veículo:</h1>
         <input
           type="text"
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded mb-8"
+          placeholder="Veículo" />
+
+        <h1>Nome do proprietário:</h1>
+        <input
+          type="text"
+          className="w-full border p-2 rounded mb-8"
           placeholder="Digite o nome" />
+
         <input
           className="border rounded mt-8 p-2 bg-red-700 text-white w-full"
           type="submit"
-          value="Buscar" />
+          value="Salvar" />
       </form>
     </div>
   )

@@ -8,6 +8,9 @@ import HomePage from './routes/HomePage.tsx'
 import CleanAutomotive from './routes/CleanAutomotive.tsx'
 import NewWorkOrder from './routes/NewWorkOrder.tsx'
 import SearchWorkOrder from './routes/SearchWorkOrder.tsx'
+import Delivery from './routes/Delivery.tsx'
+import Storage from './routes/Storage.tsx'
+import CashManagement from './routes/CashManagement.tsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
       {
         path: "/cleanautomotive",
         element: <CleanAutomotive />
+      },
+      {
+        path: "/delivery",
+        element: <Delivery />
+      },
+      {
+        path: "/storage",
+        element: <Storage />
+      },
+      {
+        path: "/cashmanagement",
+        element: <CashManagement />
       },
     ]
   }
