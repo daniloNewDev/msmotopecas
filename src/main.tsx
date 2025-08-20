@@ -20,16 +20,16 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: "/cleanautomotive",
-        element: <CleanAutomotive />
-      },
-      {
         path: "/newworkorder",
         element: <NewWorkOrder />
       },
       {
         path: "/searchworkorder",
         element: <SearchWorkOrder />
+      },
+      {
+        path: "/cleanautomotive",
+        element: <CleanAutomotive />
       },
     ]
   }
