@@ -74,12 +74,15 @@ const NewWorkOrder: React.FC = () => {
     localStorage.setItem("workOrders", JSON.stringify(ordersArray));
 
     setSuccessMessage('Ordem de Serviço salva com sucesso!')
-    resetForm()
 
     setTimeout(() => {
       setSuccessMessage('');
-      window.location.reload();
     }, 7000);
+
+    resetForm()
+
+    const nextOrderNumber = Math.max(...ordersArray.map(order => order.workOrder)) + 1;
+    setWorkOrder(nextOrderNumber);
 
   }
 
@@ -191,7 +194,7 @@ const NewWorkOrder: React.FC = () => {
           <SelectInput
             label="Funcionário responsável:"
             value={mechanic}
-            className={"col-span-2 w-full p-3"}
+            className={"col-span-2 w-full p-3 border rounded"}
             onChange={(e) => setMechanic(e.target.value)}
             options={["Misso", "MC Favela"]}
             required
