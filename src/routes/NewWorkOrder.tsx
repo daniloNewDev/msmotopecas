@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { IWorkOrder } from "../components/interfaces/WorkOrders";
 import { TextInput, NumberInput, DateInput, SelectInput } from "../components/interfaces/FormInputs";
+import api from "../services/api";
 
 const NewWorkOrder: React.FC = () => {
 
@@ -51,7 +52,7 @@ const NewWorkOrder: React.FC = () => {
 
   const [successMessage, setSuccessMessage] = useState<string>('')
 
-  const addNewWorkOrder = (e: React.FormEvent) => {
+  const addNewWorkOrder = async (e: React.FormEvent) => {
     e.preventDefault()
 
     const newWorkOrder: IWorkOrder = {
@@ -67,24 +68,22 @@ const NewWorkOrder: React.FC = () => {
       paidValue,
       mechanic
     }
-    const existingOrders = localStorage.getItem("workOrders");
-    const ordersArray: IWorkOrder[] = existingOrders ? JSON.parse(existingOrders) : [];
+    try {
+      const response = await api.post("/workorder", newWorkOrder);
+      console.log("Resposta do backend:", response.data);
 
-    ordersArray.push(newWorkOrder);
-    localStorage.setItem("workOrders", JSON.stringify(ordersArray));
-
-    setSuccessMessage('Ordem de Serviço salva com sucesso!')
+      setSuccessMessage("Ordem de Serviço salva com sucesso!");
+      resetForm();
+      setWorkOrder(prev => prev + 1);
+    } catch (error) {
+      console.error("Erro ao salvar ordem de serviço:", error);
+      setSuccessMessage("Erro ao salvar ordem de serviço.");
+    }
 
     setTimeout(() => {
       setSuccessMessage('');
     }, 7000);
-
-    resetForm()
-
-    const nextOrderNumber = Math.max(...ordersArray.map(order => order.workOrder)) + 1;
-    setWorkOrder(nextOrderNumber);
-
-  }
+  };
 
   return (
     <div className="w-[96%] ml-[2%] mt-[10%] mb-[10%] flex flex-col items-center justify-center dark:bg-white">
